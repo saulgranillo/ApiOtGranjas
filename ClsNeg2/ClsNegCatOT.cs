@@ -11,7 +11,7 @@ namespace ClbNegOT
     public class ClsNegCatOT
     {
         //SqlConnection Con = null;
-          
+             
         public ClsNegCatOT()
         {
             //SqlNorson16 con = new SqlNorson16();
