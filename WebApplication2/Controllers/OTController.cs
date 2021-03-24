@@ -1,40 +1,30 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
-//using System.Web.Mvc;
-using System.IO;
-using System.Net;
-using System.Net.Http;
-using System.Net.Http.Headers;
-using System.Security.Claims;
-using System.Web.Http;
-using System.Web.Http.Cors;
-
+using System.Threading.Tasks;
 using ClbModOT;
 using ClbNegOT;
+using Microsoft.AspNetCore.Authorization;
 
-
-namespace OrdenesTrabajo.Controllers
+namespace WebApplication2.Controllers
 {
-    //[Route("api/[controller]")]
-    //[EnableCors(origins: "*", headers:"*",methods:"*")]
-    public class OrdenesTrabajoController : ApiController
+    [Route("api/[controller]")]
+    [ApiController]
+    public class OTController : ControllerBase
     {
 
-
-        // POST: OrdenesTrabajo/Create
-        /// <summary>
-        /// Realiza el cargar los equipos(herramientas) de una OT
-        /// </summary>
-        /// <param name="objModEquipo"> modelo que retorna la peticion</param>
-        /// <returns>Modelo de ClsModEquipo denrto ClsModResultado</returns>
-        /// 
-        [HttpGet]
-        [Authorize]
+        [HttpPost("Cargar")]
         [AllowAnonymous]
-        [ActionName("CargarEquipo")]
-        public List<ClsModEquipo> CargarEquipoLista()
+        public IActionResult CargarEstatusLista(ClsModCatOT obj)
+        {
+            return Ok(obj);
+        }
+
+        [HttpGet("CargarEquipo")]
+        [AllowAnonymous]
+        public IActionResult CargarEquipoLista()
         {
             ClsModEquipo objModel = new ClsModEquipo();
             ClsModResultado objClsModResultado = new ClsModResultado();
@@ -47,26 +37,18 @@ namespace OrdenesTrabajo.Controllers
 
                 //objModResponse.lstResultado = objCatNeg.CargarEquipoLista<ClsModEquipo>(out objModResponse);
 
-
             }
 
             catch (Exception ex)
             {
                 objClsModResultado.MsgError = ex.Message;
             }
-            return LstModCatEquipo;
+            return Ok(LstModCatEquipo);
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <returns></returns>
-        /// 
-        [HttpGet]
-        [Authorize]
+        [HttpGet("CargarPrioridad")]
         [AllowAnonymous]
-        [ActionName("CargarPrioridad")]
-        public List<ClsModPrioridad> CargarPrioridadLista()
+        public IActionResult CargarPrioridadLista()
         {
             ClsModPrioridad objModel = new ClsModPrioridad();
             ClsModResultado objClsModResultado = new ClsModResultado();
@@ -76,26 +58,18 @@ namespace OrdenesTrabajo.Controllers
             try
             {
                 LstModCatPrioridad = objCatNeg.CargarPrioridad();
-
-             
             }
 
             catch (Exception ex)
             {
                 objClsModResultado.MsgError = ex.Message;
             }
-            return LstModCatPrioridad;
+            return Ok(LstModCatPrioridad);
         }
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <returns></returns>
-        /// 
-        [HttpGet]
-        [Authorize]
+
+        [HttpGet("CargarTipo")]
         [AllowAnonymous]
-        [ActionName("CargarTipo")]
-        public List<ClsModTipo> CargarTipoLista()
+        public IActionResult CargarTipoLista()
         {
             ClsModTipo objModel = new ClsModTipo();
             ClsModResultado objClsModResultado = new ClsModResultado();
@@ -112,19 +86,12 @@ namespace OrdenesTrabajo.Controllers
             {
                 objClsModResultado.MsgError = ex.Message;
             }
-            return LstModCatTipo;
+            return Ok(LstModCatTipo);
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <returns></returns>
-        /// 
-        [HttpGet]
-        [Authorize]
+        [HttpGet("CargarArea")]
         [AllowAnonymous]
-        [ActionName("CargarArea")]
-        public List<ClsModArea> CargarAreaLista()
+        public IActionResult CargarAreaLista()
         {
             ClsModArea objModel = new ClsModArea();
             ClsModResultado objClsModResultado = new ClsModResultado();
@@ -141,19 +108,12 @@ namespace OrdenesTrabajo.Controllers
             {
                 objClsModResultado.MsgError = ex.Message;
             }
-            return LstModCatArea;
+            return Ok(LstModCatArea);
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <returns></returns>
-        /// 
-        [HttpGet]
-        [Authorize]
+        [HttpGet("CargarGranja")]       
         [AllowAnonymous]
-        [ActionName("CargarGranja")]
-        public List<ClsModGranja> CargarGranjaLista()
+        public IActionResult CargarGranjaLista()
         {
             ClsModGranja objModel = new ClsModGranja();
             ClsModResultado objClsModResultado = new ClsModResultado();
@@ -170,18 +130,12 @@ namespace OrdenesTrabajo.Controllers
             {
                 objClsModResultado.MsgError = ex.Message;
             }
-            return LstModCatGranja;
+            return Ok(LstModCatGranja);
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <returns></returns>
-        [HttpPost]
-        [Authorize]
+        [HttpGet("CargarEstatus")]
         [AllowAnonymous]
-        [ActionName("CargarEstatus")]
-        public List<ClsModEstatus> CargarEstatusLista(ClsModArea obj)
+        public IActionResult CargarEstatusLista()
         {
             ClsModEstatus objModel = new ClsModEstatus();
             ClsModResultado objClsModResultado = new ClsModResultado();
@@ -198,20 +152,14 @@ namespace OrdenesTrabajo.Controllers
             {
                 objClsModResultado.MsgError = ex.Message;
             }
-            return LstModCatEstatus;
+            return Ok(LstModCatEstatus);
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <returns></returns>
-        [HttpGet]
-        [Authorize]
+        [HttpGet("CargarEvento")]
         [AllowAnonymous]
-        [ActionName("CargarEvento")]
-        public List<ClsModEvento> CargarEventoLista()
+        public IActionResult CargarEventoLista()
         {
-            ClsModEvento objModel = new ClsModEvento();
+            //ClsModEvento objModel = new ClsModEvento();
             ClsModResultado objClsModResultado = new ClsModResultado();
             List<ClsModEvento> LstModCatEvento = null;
 
@@ -226,35 +174,28 @@ namespace OrdenesTrabajo.Controllers
             {
                 objClsModResultado.MsgError = ex.Message;
             }
-            return LstModCatEvento;
+            return Ok(LstModCatEvento);
         }
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="objModel"></param>
-        /// <returns></returns>
-        /// 
-        [HttpPost]       
+
+        [HttpPost("Guardar")]
         [AllowAnonymous]
-        [ActionName("Guardar")]
-        public ClsModResultado GuardarOT (ClsModCatOT objModel)
+        public IActionResult GuardarOT(ClsModCatOT objModel)
         {
             ClsModResultado objClsModResultado = new ClsModResultado();
             ClsNegCatOT objCatNeg = new ClsNegCatOT();
-            
+
             try
             {
-                
+
                 objClsModResultado = objCatNeg.GuardarOT(objModel);
             }
             catch (Exception ex)
-            { 
+            {
                 objClsModResultado.MsgError = ex.Message;
-                
-            }
-            return objClsModResultado;
-        }
 
+            }
+            return Ok(objClsModResultado);
+        }
 
 
 

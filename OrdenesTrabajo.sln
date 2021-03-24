@@ -11,7 +11,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClsModOT", "ClsMod2\ClsModO
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClsNegOT", "ClsNeg2\ClsNegOT.csproj", "{0A7083FA-3795-40CB-8B09-0C73EABA5749}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TodoApi", "TodoApi\TodoApi.csproj", "{B9E82C31-27D0-4B8A-87A8-01DFBB9DFB30}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TodoApi", "TodoApi\TodoApi.csproj", "{B9E82C31-27D0-4B8A-87A8-01DFBB9DFB30}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApplication2", "WebApplication2\WebApplication2.csproj", "{5B9EFAA3-D644-4749-835A-3D7426034D56}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +41,10 @@ Global
 		{B9E82C31-27D0-4B8A-87A8-01DFBB9DFB30}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B9E82C31-27D0-4B8A-87A8-01DFBB9DFB30}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B9E82C31-27D0-4B8A-87A8-01DFBB9DFB30}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5B9EFAA3-D644-4749-835A-3D7426034D56}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5B9EFAA3-D644-4749-835A-3D7426034D56}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5B9EFAA3-D644-4749-835A-3D7426034D56}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5B9EFAA3-D644-4749-835A-3D7426034D56}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -20,7 +20,7 @@ namespace OrdenesTrabajo
             //RouteConfig.RegisterRoutes(RouteTable.Routes);
             //BundleConfig.RegisterBundles(BundleTable.Bundles);
 
-            GlobalConfiguration.Configure(RouteConfig.RegisterRoutes);
+            GlobalConfiguration.Configure(WebApiConfig.Register);
         }
     }
 }

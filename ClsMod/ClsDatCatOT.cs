@@ -427,7 +427,7 @@ namespace ClsDatOT
                 conSql.Command.Parameters.Add(new SqlParameter("@Granja", SqlDbType.VarChar) { Value = objModel.Granja });
                 conSql.Command.Parameters.Add(new SqlParameter("@Area", SqlDbType.VarChar) { Value = objModel.Area });
                 conSql.Command.Parameters.Add(new SqlParameter("@CodArea", SqlDbType.VarChar) { Value = objModel.CodArea });
-                conSql.Command.Parameters.Add(new SqlParameter("@Ubicacion", SqlDbType.VarChar) { Value = objModel.Ubicacion });
+                conSql.Command.Parameters.Add(new SqlParameter("@Sala", SqlDbType.VarChar) { Value = objModel.Sala });
                 conSql.Command.Parameters.Add(new SqlParameter("@Equipo", SqlDbType.VarChar) { Value = objModel.Equipo });
                 conSql.Command.Parameters.Add(new SqlParameter("@CodEquipo", SqlDbType.VarChar) { Value = objModel.CodEquipo });
                 conSql.Command.Parameters.Add(new SqlParameter("@Grupo", SqlDbType.VarChar) { Value = objModel.Grupo });

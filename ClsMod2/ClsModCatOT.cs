@@ -17,7 +17,7 @@ namespace ClbModOT//ClsMod2
         public string Granja { get; set; }
         public string Area { get; set; }
         public string CodArea { get; set; }
-        public string Ubicacion { get; set; }
+        public string Sala { get; set; }
         public string Equipo { get; set; }
         public string CodEquipo { get; set; }
         public string Grupo { get; set; }
