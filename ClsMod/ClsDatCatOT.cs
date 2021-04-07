@@ -435,7 +435,11 @@ namespace ClsDatOT
                 conSql.Command.Parameters.Add(new SqlParameter("@Materiales", SqlDbType.VarChar) { Value = objModel.Materiales });
                 conSql.Command.Parameters.Add(new SqlParameter("@Estatus", SqlDbType.VarChar) { Value = objModel.Estatus });
                 conSql.Command.Parameters.Add(new SqlParameter("@CodEstatus", SqlDbType.VarChar) { Value = objModel.CodEstatus });
-                conSql.Command.Parameters.Add(new SqlParameter("@Tecnico", SqlDbType.VarChar) { Value = objModel.Tecnico });
+                conSql.Command.Parameters.Add(new SqlParameter("@Tecnico1", SqlDbType.VarChar) { Value = objModel.Tecnico1 });
+                conSql.Command.Parameters.Add(new SqlParameter("@Tecnico2", SqlDbType.VarChar) { Value = objModel.Tecnico2 });
+                conSql.Command.Parameters.Add(new SqlParameter("@Tecnico3", SqlDbType.VarChar) { Value = objModel.Tecnico3 });
+                conSql.Command.Parameters.Add(new SqlParameter("@Tecnico4", SqlDbType.VarChar) { Value = objModel.Tecnico4 });
+                conSql.Command.Parameters.Add(new SqlParameter("@Tecnico5", SqlDbType.VarChar) { Value = objModel.Tecnico5 });
                 conSql.Command.Parameters.Add(new SqlParameter("@TipoEventoDesc", SqlDbType.VarChar) { Value = objModel.TipoEvento });
                 conSql.Command.Parameters.Add(new SqlParameter("@TipoEvento", SqlDbType.VarChar) { Value = objModel.CodEvento });
 

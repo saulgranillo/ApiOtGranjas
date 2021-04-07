@@ -20,7 +20,11 @@ namespace ClbModOT
         public string Actividad { get; set; }
         public string Materiales { get; set; }
         public int EstadoOT { get; set; }
-        public string Tecnico { get; set; }
+        public string Tecnico1 { get; set; }
+        public string Tecnico2 { get; set; }
+        public string Tecnico3 { get; set; }
+        public string Tecnico4 { get; set; }
+        public string Tecnico5 { get; set; }
         public string Imagen_Id { get; set; }
     }
 }

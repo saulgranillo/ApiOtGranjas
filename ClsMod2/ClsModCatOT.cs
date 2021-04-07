@@ -25,7 +25,11 @@ namespace ClbModOT//ClsMod2
         public string Materiales { get; set; }
         public string Estatus { get; set; }
         public string CodEstatus { get; set; }
-        public string Tecnico { get; set; }
+        public string Tecnico1 { get; set; }
+        public string Tecnico2 { get; set; }
+        public string Tecnico3 { get; set; }
+        public string Tecnico4 { get; set; }
+        public string Tecnico5 { get; set; }
         public string TipoEvento { get; set; }
         public string CodEvento { get; set; }
         public string Imagen { get; set; }
