@@ -405,8 +405,6 @@ namespace ClsDatOT
         //GUARDAR       GUARDAR     GUARDAR     GUARDAR
 
 
-
-
         public ClsModResultado GuardarOT(ClsModCatOT objModel)
         {
             ClsModResultado objReturn = new ClsModResultado();
@@ -456,6 +454,76 @@ namespace ClsDatOT
 
             
             return objReturn;
+        }
+
+        ////REPORTES
+
+        public List<ClsModCatOT> CargarCSV(ClsModCatOT objModel, out ClsModResultado objClsModResultado)  
+        {
+            objClsModResultado = new ClsModResultado();
+            List<ClsModCatOT> LstModCatOTCSV = new List<ClsModCatOT>();
+            SqlDataReader sqlRead = null;
+
+            SqlNorson16 conSql = new SqlNorson16();
+            conSql.CreateConn();
+            try
+            {
+                conSql.Command = conSql.Connection.CreateCommand();
+                conSql.Command.CommandType = CommandType.StoredProcedure;
+                conSql.Command.CommandText = "[OrdenesTrabajo].[dbo].[SpdCargarTodasOT]";
+                conSql.DataReader = conSql.Command.ExecuteReader();
+
+
+                if (conSql.DataReader.HasRows)
+                {
+                    while (conSql.DataReader.Read())
+                    {
+
+
+                        //objModel.IdOT = (conSql.DataReader.ToString(). ["IdEquipo"].ToString());
+
+                        objModel.Prioridad = (string)(conSql.DataReader["Prioridad"] != DBNull.Value ? conSql.DataReader["Prioridad"] : string.Empty);
+                        objModel.CodPrioridad = (string)(conSql.DataReader["CodPrioridad"] != DBNull.Value ? conSql.DataReader["CodPrioridad"] : string.Empty);
+                        objModel.TipoOT = (string)(conSql.DataReader["TipoOT"] != DBNull.Value ? conSql.DataReader["TipoOT"] : string.Empty);
+                        objModel.CodTipoOT = (string)(conSql.DataReader["CodTipoOT"] != DBNull.Value ? conSql.DataReader["CodTipoOT"] : string.Empty);
+                        objModel.Centro = (string)(conSql.DataReader["Centro"] != DBNull.Value ? conSql.DataReader["Centro"] : string.Empty);
+                        objModel.Granja = (string)(conSql.DataReader["Granja"] != DBNull.Value ? conSql.DataReader["Granja"] : string.Empty);
+                        objModel.Area = (string)(conSql.DataReader["Area"] != DBNull.Value ? conSql.DataReader["Area"] : string.Empty);
+                        objModel.CodArea = (string)(conSql.DataReader["CodArea"] != DBNull.Value ? conSql.DataReader["CodArea"] : string.Empty);
+                        objModel.Sala= (string)(conSql.DataReader["Sala"] != DBNull.Value ? conSql.DataReader["Sala"] : string.Empty);
+                        objModel.Equipo = (string)(conSql.DataReader["Equipo"] != DBNull.Value ? conSql.DataReader["Equipo"] : string.Empty);
+                        objModel.CodEquipo = (string)(conSql.DataReader["CodEquipo"] != DBNull.Value ? conSql.DataReader["CodEquipo"] : string.Empty);
+                        objModel.Grupo = (string)(conSql.DataReader["Grupo"] != DBNull.Value ? conSql.DataReader["Grupo"] : string.Empty);
+                        objModel.Actividad = (string)(conSql.DataReader["Actividad"] != DBNull.Value ? conSql.DataReader["Actividad"] : string.Empty);
+                        objModel.Materiales = (string)(conSql.DataReader["Materiales"] != DBNull.Value ? conSql.DataReader["Materiales"] : string.Empty);
+                        objModel.Estatus = (string)(conSql.DataReader["Estatus"] != DBNull.Value ? conSql.DataReader["Estatus"] : string.Empty);
+                        objModel.CodEstatus = (string)(conSql.DataReader["CodEstatus"] != DBNull.Value ? conSql.DataReader["CodEstatus"] : string.Empty);
+                        objModel.Tecnico1 = (string)(conSql.DataReader["Tecnico1"] != DBNull.Value ? conSql.DataReader["Tecnico1"] : string.Empty);
+                        objModel.Tecnico2 = (string)(conSql.DataReader["Tecnico2"] != DBNull.Value ? conSql.DataReader["Tecnico2"] : string.Empty);
+                        objModel.Tecnico3 = (string)(conSql.DataReader["Tecnico3"] != DBNull.Value ? conSql.DataReader["Tecnico3"] : string.Empty);
+                        objModel.Tecnico4 = (string)(conSql.DataReader["Tecnico4"] != DBNull.Value ? conSql.DataReader["Tecnico4"] : string.Empty);
+                        objModel.Tecnico5 = (string)(conSql.DataReader["Tecnico5"] != DBNull.Value ? conSql.DataReader["Tecnico5"] : string.Empty);
+                        objModel.TipoEvento = (string)(conSql.DataReader["Evento"] != DBNull.Value ? conSql.DataReader["Evento"] : string.Empty);
+                        objModel.CodEvento = (string)(conSql.DataReader["CodEvento"] != DBNull.Value ? conSql.DataReader["CodEvento"] : string.Empty);
+                        objModel.Folio = (conSql.DataReader["Folio"] != DBNull.Value ? conSql.DataReader["Folio"].ToString() : string.Empty);
+                       
+
+                        LstModCatOTCSV.Add(objModel);
+
+                    }
+                }
+
+            }
+            catch (Exception ex)
+            {
+                objClsModResultado.MsgError = Error + "Cargar CSV()" + ex.Message;
+
+            }
+            finally
+            {
+                if (sqlRead != null) sqlRead.Close();
+            }
+            return LstModCatOTCSV;
         }
 
 

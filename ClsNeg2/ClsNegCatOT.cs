@@ -170,6 +170,27 @@ namespace ClbNegOT
             return objClsModResultado;
         }
 
+        //REPORTES
+
+        public List<ClsModCatOT> CargarCSV() 
+        {
+            ClsModCatOT objModel = new ClsModCatOT();
+            ClsModResultado objClsModResultado = new ClsModResultado();
+            List<ClsModCatOT> LstModCatOTCSV= null;
+
+            try
+            {
+                LstModCatOTCSV = new  ClsDatOT.CLsDatOT().CargarCSV(objModel, out objClsModResultado);
+            }
+            catch (Exception ex)
+            {
+                objClsModResultado.MsgError = ex.Message;
+            }
+
+            return LstModCatOTCSV;
+        }
+
+
 
 
 

@@ -197,6 +197,27 @@ namespace WebApplication2.Controllers
             return Ok(objClsModResultado);
         }
 
+        [HttpGet("CargarCSV")]
+        [AllowAnonymous]
+        public IActionResult CargarCSV()
+        {
+            ClsModCatOT objModel = new ClsModCatOT();
+            ClsModResultado objClsModResultado = new ClsModResultado();
+            List<ClsModCatOT> LstModCatOTCSV = null;
+
+            ClsNegCatOT objCatNeg = new ClsNegCatOT();
+            try
+            {
+                LstModCatOTCSV = objCatNeg.CargarCSV();
+            }
+
+            catch (Exception ex)
+            {
+                objClsModResultado.MsgError = ex.Message;
+            }
+            return Ok(LstModCatOTCSV);
+        }
+
 
 
 
