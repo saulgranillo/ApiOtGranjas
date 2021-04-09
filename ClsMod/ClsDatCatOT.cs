@@ -473,40 +473,95 @@ namespace ClsDatOT
                 conSql.Command.CommandText = "[OrdenesTrabajo].[dbo].[SpdCargarTodasOT]";
                 conSql.DataReader = conSql.Command.ExecuteReader();
 
+                string Id = string.Empty;
+                string Prioridad = string.Empty;
+                string CodPrioridad = string.Empty;
+                string TipoOT = string.Empty;
+                string CodTipoOT = string.Empty;
+                string Centro = string.Empty;
+                string Granja = string.Empty;
+                string Area = string.Empty;
+                string CodArea = string.Empty;
+                string Sala = string.Empty;
+                string Equipo = string.Empty;
+                string CodEquipo = string.Empty;
+                string Grupo = string.Empty;
+                string Actividad = string.Empty;
+                string Materiales = string.Empty;
+                string Estatus = string.Empty;
+                string CodEstatus = string.Empty;
+                string Tecnico1 = string.Empty;
+                string Tecnico2 = string.Empty;
+                string Tecnico3 = string.Empty;
+                string Tecnico4 = string.Empty;
+                string Tecnico5 = string.Empty;
+                string TipoEvento = string.Empty;
+                string CodEvento = string.Empty;
+                string Folio = string.Empty;
 
                 if (conSql.DataReader.HasRows)
                 {
                     while (conSql.DataReader.Read())
                     {
+                     
+                        objModel = new ClsModCatOT();
+
+                        Id = conSql.DataReader["IdOT"].ToString();
+                        Prioridad = (string)(conSql.DataReader["Prioridad"] != DBNull.Value ? conSql.DataReader["Prioridad"] : string.Empty);
+                        CodPrioridad = (string)(conSql.DataReader["CodPrioridad"] != DBNull.Value ? conSql.DataReader["CodPrioridad"] : string.Empty);
+                        TipoOT = (string)(conSql.DataReader["TipoOT"] != DBNull.Value ? conSql.DataReader["TipoOT"] : string.Empty);
+                        CodTipoOT = (string)(conSql.DataReader["CodTipoOT"] != DBNull.Value ? conSql.DataReader["CodTipoOT"] : string.Empty);
+                        Centro = (string)(conSql.DataReader["Centro"] != DBNull.Value ? conSql.DataReader["Centro"] : string.Empty);
+                        Granja = (string)(conSql.DataReader["Granja"] != DBNull.Value ? conSql.DataReader["Granja"] : string.Empty);
+                        Area = (string)(conSql.DataReader["Area"] != DBNull.Value ? conSql.DataReader["Area"] : string.Empty);
+                        CodArea = (string)(conSql.DataReader["CodArea"] != DBNull.Value ? conSql.DataReader["CodArea"] : string.Empty);
+                        Sala= (string)(conSql.DataReader["Sala"] != DBNull.Value ? conSql.DataReader["Sala"] : string.Empty);
+                        Equipo = (string)(conSql.DataReader["Equipo"] != DBNull.Value ? conSql.DataReader["Equipo"] : string.Empty);
+                        CodEquipo = (string)(conSql.DataReader["CodEquipo"] != DBNull.Value ? conSql.DataReader["CodEquipo"] : string.Empty);
+                        Grupo = (string)(conSql.DataReader["Grupo"] != DBNull.Value ? conSql.DataReader["Grupo"] : string.Empty);
+                        Actividad = (string)(conSql.DataReader["Actividad"] != DBNull.Value ? conSql.DataReader["Actividad"] : string.Empty);
+                        Materiales = (string)(conSql.DataReader["Materiales"] != DBNull.Value ? conSql.DataReader["Materiales"] : string.Empty);
+                        Estatus = (string)(conSql.DataReader["Estatus"] != DBNull.Value ? conSql.DataReader["Estatus"] : string.Empty);
+                        CodEstatus = (string)(conSql.DataReader["CodEstatus"] != DBNull.Value ? conSql.DataReader["CodEstatus"] : string.Empty);
+                        Tecnico1 = (string)(conSql.DataReader["Tecnico1"] != DBNull.Value ? conSql.DataReader["Tecnico1"] : string.Empty);
+                        Tecnico2 = (string)(conSql.DataReader["Tecnico2"] != DBNull.Value ? conSql.DataReader["Tecnico2"] : string.Empty);
+                        Tecnico3 = (string)(conSql.DataReader["Tecnico3"] != DBNull.Value ? conSql.DataReader["Tecnico3"] : string.Empty);
+                        Tecnico4 = (string)(conSql.DataReader["Tecnico4"] != DBNull.Value ? conSql.DataReader["Tecnico4"] : string.Empty);
+                        Tecnico5 = (string)(conSql.DataReader["Tecnico5"] != DBNull.Value ? conSql.DataReader["Tecnico5"] : string.Empty);
+                        TipoEvento = (string)(conSql.DataReader["Evento"] != DBNull.Value ? conSql.DataReader["Evento"] : string.Empty);
+                        CodEvento = (string)(conSql.DataReader["CodEvento"] != DBNull.Value ? conSql.DataReader["CodEvento"] : string.Empty);
+                        Folio = (conSql.DataReader["Folio"] != DBNull.Value ? conSql.DataReader["Folio"].ToString() : string.Empty);
+
+                        int result = Int32.Parse(Id);
+                        objModel.IdOT = result;
+
+                        objModel.Prioridad = Prioridad;
+                        objModel.CodPrioridad = CodPrioridad;
+                        objModel.TipoOT = TipoOT;
+                        objModel.CodTipoOT = CodTipoOT;
+                        objModel.Centro = Centro;
+                        objModel.Granja = Granja;
+                        objModel.Area = Area;
+                        objModel.CodArea = CodArea;
+                        objModel.Sala = Sala;
+                        objModel.Equipo = Equipo;
+                        objModel.CodEquipo = CodEquipo;
+                        objModel.Grupo = Grupo;
+                        objModel.Actividad = Actividad;
+                        objModel.Materiales = Materiales;
+                        objModel.Estatus = Estatus;
+                        objModel.CodEstatus = Estatus;
+                        objModel.Tecnico1 = Tecnico1;
+                        objModel.Tecnico2 = Tecnico2;
+                        objModel.Tecnico3 = Tecnico3;
+                        objModel.Tecnico4 = Tecnico4;
+                        objModel.Tecnico5 = Tecnico5;
+                        objModel.TipoEvento = TipoEvento;
+                        objModel.CodEvento = CodEvento;
+                        objModel.Folio = Folio;
 
 
-                        //objModel.IdOT = (conSql.DataReader.ToString(). ["IdEquipo"].ToString());
-
-                        objModel.Prioridad = (string)(conSql.DataReader["Prioridad"] != DBNull.Value ? conSql.DataReader["Prioridad"] : string.Empty);
-                        objModel.CodPrioridad = (string)(conSql.DataReader["CodPrioridad"] != DBNull.Value ? conSql.DataReader["CodPrioridad"] : string.Empty);
-                        objModel.TipoOT = (string)(conSql.DataReader["TipoOT"] != DBNull.Value ? conSql.DataReader["TipoOT"] : string.Empty);
-                        objModel.CodTipoOT = (string)(conSql.DataReader["CodTipoOT"] != DBNull.Value ? conSql.DataReader["CodTipoOT"] : string.Empty);
-                        objModel.Centro = (string)(conSql.DataReader["Centro"] != DBNull.Value ? conSql.DataReader["Centro"] : string.Empty);
-                        objModel.Granja = (string)(conSql.DataReader["Granja"] != DBNull.Value ? conSql.DataReader["Granja"] : string.Empty);
-                        objModel.Area = (string)(conSql.DataReader["Area"] != DBNull.Value ? conSql.DataReader["Area"] : string.Empty);
-                        objModel.CodArea = (string)(conSql.DataReader["CodArea"] != DBNull.Value ? conSql.DataReader["CodArea"] : string.Empty);
-                        objModel.Sala= (string)(conSql.DataReader["Sala"] != DBNull.Value ? conSql.DataReader["Sala"] : string.Empty);
-                        objModel.Equipo = (string)(conSql.DataReader["Equipo"] != DBNull.Value ? conSql.DataReader["Equipo"] : string.Empty);
-                        objModel.CodEquipo = (string)(conSql.DataReader["CodEquipo"] != DBNull.Value ? conSql.DataReader["CodEquipo"] : string.Empty);
-                        objModel.Grupo = (string)(conSql.DataReader["Grupo"] != DBNull.Value ? conSql.DataReader["Grupo"] : string.Empty);
-                        objModel.Actividad = (string)(conSql.DataReader["Actividad"] != DBNull.Value ? conSql.DataReader["Actividad"] : string.Empty);
-                        objModel.Materiales = (string)(conSql.DataReader["Materiales"] != DBNull.Value ? conSql.DataReader["Materiales"] : string.Empty);
-                        objModel.Estatus = (string)(conSql.DataReader["Estatus"] != DBNull.Value ? conSql.DataReader["Estatus"] : string.Empty);
-                        objModel.CodEstatus = (string)(conSql.DataReader["CodEstatus"] != DBNull.Value ? conSql.DataReader["CodEstatus"] : string.Empty);
-                        objModel.Tecnico1 = (string)(conSql.DataReader["Tecnico1"] != DBNull.Value ? conSql.DataReader["Tecnico1"] : string.Empty);
-                        objModel.Tecnico2 = (string)(conSql.DataReader["Tecnico2"] != DBNull.Value ? conSql.DataReader["Tecnico2"] : string.Empty);
-                        objModel.Tecnico3 = (string)(conSql.DataReader["Tecnico3"] != DBNull.Value ? conSql.DataReader["Tecnico3"] : string.Empty);
-                        objModel.Tecnico4 = (string)(conSql.DataReader["Tecnico4"] != DBNull.Value ? conSql.DataReader["Tecnico4"] : string.Empty);
-                        objModel.Tecnico5 = (string)(conSql.DataReader["Tecnico5"] != DBNull.Value ? conSql.DataReader["Tecnico5"] : string.Empty);
-                        objModel.TipoEvento = (string)(conSql.DataReader["Evento"] != DBNull.Value ? conSql.DataReader["Evento"] : string.Empty);
-                        objModel.CodEvento = (string)(conSql.DataReader["CodEvento"] != DBNull.Value ? conSql.DataReader["CodEvento"] : string.Empty);
-                        objModel.Folio = (conSql.DataReader["Folio"] != DBNull.Value ? conSql.DataReader["Folio"].ToString() : string.Empty);
-                       
+                        
 
                         LstModCatOTCSV.Add(objModel);
 
