@@ -470,21 +470,17 @@ namespace ClsDatOT
             {
                 conSql.Command = conSql.Connection.CreateCommand();
                 conSql.Command.CommandType = CommandType.StoredProcedure;
-                conSql.Command.CommandText = "[OrdenesTrabajo].[dbo].[SpdCargarTodasOT]";
+                conSql.Command.CommandText = "[OrdenesTrabajo].[dbo].[SpdRptCatOT]";
                 conSql.DataReader = conSql.Command.ExecuteReader();
 
-                string Id = string.Empty;
+               
                 string Prioridad = string.Empty;
-                string CodPrioridad = string.Empty;
+                string Folio = string.Empty;
                 string TipoOT = string.Empty;
-                string CodTipoOT = string.Empty;
-                string Centro = string.Empty;
                 string Granja = string.Empty;
                 string Area = string.Empty;
-                string CodArea = string.Empty;
                 string Sala = string.Empty;
                 string Equipo = string.Empty;
-                string CodEquipo = string.Empty;
                 string Grupo = string.Empty;
                 string Actividad = string.Empty;
                 string Materiales = string.Empty;
@@ -497,27 +493,22 @@ namespace ClsDatOT
                 string Tecnico5 = string.Empty;
                 string TipoEvento = string.Empty;
                 string CodEvento = string.Empty;
-                string Folio = string.Empty;
-
+               
                 if (conSql.DataReader.HasRows)
                 {
                     while (conSql.DataReader.Read())
                     {
-                     
+                        //el orden del modelo, es el orden en el que se acomodan las columnas del reporte
                         objModel = new ClsModCatOT();
 
-                        Id = conSql.DataReader["IdOT"].ToString();
+                       
                         Prioridad = (string)(conSql.DataReader["Prioridad"] != DBNull.Value ? conSql.DataReader["Prioridad"] : string.Empty);
-                        CodPrioridad = (string)(conSql.DataReader["CodPrioridad"] != DBNull.Value ? conSql.DataReader["CodPrioridad"] : string.Empty);
+                        Folio = (conSql.DataReader["Folio"] != DBNull.Value ? conSql.DataReader["Folio"].ToString() : string.Empty);
                         TipoOT = (string)(conSql.DataReader["TipoOT"] != DBNull.Value ? conSql.DataReader["TipoOT"] : string.Empty);
-                        CodTipoOT = (string)(conSql.DataReader["CodTipoOT"] != DBNull.Value ? conSql.DataReader["CodTipoOT"] : string.Empty);
-                        Centro = (string)(conSql.DataReader["Centro"] != DBNull.Value ? conSql.DataReader["Centro"] : string.Empty);
                         Granja = (string)(conSql.DataReader["Granja"] != DBNull.Value ? conSql.DataReader["Granja"] : string.Empty);
                         Area = (string)(conSql.DataReader["Area"] != DBNull.Value ? conSql.DataReader["Area"] : string.Empty);
-                        CodArea = (string)(conSql.DataReader["CodArea"] != DBNull.Value ? conSql.DataReader["CodArea"] : string.Empty);
                         Sala= (string)(conSql.DataReader["Sala"] != DBNull.Value ? conSql.DataReader["Sala"] : string.Empty);
                         Equipo = (string)(conSql.DataReader["Equipo"] != DBNull.Value ? conSql.DataReader["Equipo"] : string.Empty);
-                        CodEquipo = (string)(conSql.DataReader["CodEquipo"] != DBNull.Value ? conSql.DataReader["CodEquipo"] : string.Empty);
                         Grupo = (string)(conSql.DataReader["Grupo"] != DBNull.Value ? conSql.DataReader["Grupo"] : string.Empty);
                         Actividad = (string)(conSql.DataReader["Actividad"] != DBNull.Value ? conSql.DataReader["Actividad"] : string.Empty);
                         Materiales = (string)(conSql.DataReader["Materiales"] != DBNull.Value ? conSql.DataReader["Materiales"] : string.Empty);
@@ -530,27 +521,29 @@ namespace ClsDatOT
                         Tecnico5 = (string)(conSql.DataReader["Tecnico5"] != DBNull.Value ? conSql.DataReader["Tecnico5"] : string.Empty);
                         TipoEvento = (string)(conSql.DataReader["Evento"] != DBNull.Value ? conSql.DataReader["Evento"] : string.Empty);
                         CodEvento = (string)(conSql.DataReader["CodEvento"] != DBNull.Value ? conSql.DataReader["CodEvento"] : string.Empty);
-                        Folio = (conSql.DataReader["Folio"] != DBNull.Value ? conSql.DataReader["Folio"].ToString() : string.Empty);
 
-                        int result = Int32.Parse(Id);
-                        objModel.IdOT = result;
+                        //int result = Int32.Parse(Id);
+                        //objModel.IdOT = result;
+
+                        //quitar caracteres - : de la fecha (folio)
+                        string folioTmp = Folio.Replace("-","");
+                        string folioTmp2 = folioTmp.Replace(":", "");
+                        string folioTmp3 = folioTmp2.Replace(".", "");
+                        string folioTmp4 = folioTmp3.Replace(" ", "");
+
 
                         objModel.Prioridad = Prioridad;
-                        objModel.CodPrioridad = CodPrioridad;
+                        objModel.Folio = folioTmp4;
                         objModel.TipoOT = TipoOT;
-                        objModel.CodTipoOT = CodTipoOT;
-                        objModel.Centro = Centro;
                         objModel.Granja = Granja;
-                        objModel.Area = Area;
-                        objModel.CodArea = CodArea;
+                        objModel.Area = Area; 
                         objModel.Sala = Sala;
                         objModel.Equipo = Equipo;
-                        objModel.CodEquipo = CodEquipo;
                         objModel.Grupo = Grupo;
                         objModel.Actividad = Actividad;
                         objModel.Materiales = Materiales;
                         objModel.Estatus = Estatus;
-                        objModel.CodEstatus = Estatus;
+                        objModel.CodEstatus = CodEstatus;
                         objModel.Tecnico1 = Tecnico1;
                         objModel.Tecnico2 = Tecnico2;
                         objModel.Tecnico3 = Tecnico3;
@@ -558,7 +551,7 @@ namespace ClsDatOT
                         objModel.Tecnico5 = Tecnico5;
                         objModel.TipoEvento = TipoEvento;
                         objModel.CodEvento = CodEvento;
-                        objModel.Folio = Folio;
+                        
 
 
                         

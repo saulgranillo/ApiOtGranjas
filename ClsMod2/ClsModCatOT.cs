@@ -10,6 +10,7 @@ namespace ClbModOT//ClsMod2
     {
         public int IdOT { get; set; }
         public string Prioridad { get; set; }
+        public string Folio { get; set; }
         public string CodPrioridad { get; set; }
         public string TipoOT { get; set; }
         public string CodTipoOT { get; set; }
@@ -32,7 +33,7 @@ namespace ClbModOT//ClsMod2
         public string Tecnico5 { get; set; }
         public string TipoEvento { get; set; }
         public string CodEvento { get; set; }
-        public string Folio { get; set; }
+       
         public string Imagen { get; set; }
     }
 }
