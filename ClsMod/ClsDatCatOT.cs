@@ -474,16 +474,16 @@ namespace ClsDatOT
                 conSql.DataReader = conSql.Command.ExecuteReader();
 
                
-                string Prioridad = string.Empty;
+                string CodPrioridad = string.Empty;
                 string Folio = string.Empty;
-                string TipoOT = string.Empty;
+                string CodTipoOT = string.Empty;
                 string Granja = string.Empty;
                 string Area = string.Empty;
                 string Sala = string.Empty;
                 string Equipo = string.Empty;
-                string Grupo = string.Empty;
                 string Actividad = string.Empty;
                 string Materiales = string.Empty;
+                //string Fecha = string.Empty;
                 string Estatus = string.Empty;
                 string CodEstatus = string.Empty;
                 string Tecnico1 = string.Empty;
@@ -502,14 +502,13 @@ namespace ClsDatOT
                         objModel = new ClsModCatOT();
 
                        
-                        Prioridad = (string)(conSql.DataReader["Prioridad"] != DBNull.Value ? conSql.DataReader["Prioridad"] : string.Empty);
+                        CodPrioridad = (string)(conSql.DataReader["CodPrioridad"] != DBNull.Value ? conSql.DataReader["CodPrioridad"] : string.Empty);
                         Folio = (conSql.DataReader["Folio"] != DBNull.Value ? conSql.DataReader["Folio"].ToString() : string.Empty);
-                        TipoOT = (string)(conSql.DataReader["TipoOT"] != DBNull.Value ? conSql.DataReader["TipoOT"] : string.Empty);
+                        CodTipoOT = (string)(conSql.DataReader["CodTipoOT"] != DBNull.Value ? conSql.DataReader["CodTipoOT"] : string.Empty);
                         Granja = (string)(conSql.DataReader["Granja"] != DBNull.Value ? conSql.DataReader["Granja"] : string.Empty);
                         Area = (string)(conSql.DataReader["Area"] != DBNull.Value ? conSql.DataReader["Area"] : string.Empty);
                         Sala= (string)(conSql.DataReader["Sala"] != DBNull.Value ? conSql.DataReader["Sala"] : string.Empty);
                         Equipo = (string)(conSql.DataReader["Equipo"] != DBNull.Value ? conSql.DataReader["Equipo"] : string.Empty);
-                        Grupo = (string)(conSql.DataReader["Grupo"] != DBNull.Value ? conSql.DataReader["Grupo"] : string.Empty);
                         Actividad = (string)(conSql.DataReader["Actividad"] != DBNull.Value ? conSql.DataReader["Actividad"] : string.Empty);
                         Materiales = (string)(conSql.DataReader["Materiales"] != DBNull.Value ? conSql.DataReader["Materiales"] : string.Empty);
                         Estatus = (string)(conSql.DataReader["Estatus"] != DBNull.Value ? conSql.DataReader["Estatus"] : string.Empty);
@@ -532,16 +531,16 @@ namespace ClsDatOT
                         string folioTmp4 = folioTmp3.Replace(" ", "");
 
 
-                        objModel.Prioridad = Prioridad;
+                        objModel.CodPrioridad = CodPrioridad;
                         objModel.Folio = folioTmp4;
-                        objModel.TipoOT = TipoOT;
+                        objModel.CodTipoOT = CodTipoOT;
                         objModel.Granja = Granja;
                         objModel.Area = Area; 
                         objModel.Sala = Sala;
                         objModel.Equipo = Equipo;
-                        objModel.Grupo = Grupo;
                         objModel.Actividad = Actividad;
                         objModel.Materiales = Materiales;
+                        objModel.Fecha= Folio;
                         objModel.Estatus = Estatus;
                         objModel.CodEstatus = CodEstatus;
                         objModel.Tecnico1 = Tecnico1;
