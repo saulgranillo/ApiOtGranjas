@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+
 namespace ClbModOT//ClsMod2
 {
     public class ClsModCatOT
@@ -34,7 +35,7 @@ namespace ClbModOT//ClsMod2
         public string Tecnico5 { get; set; }
         public string TipoEvento { get; set; }
         public string CodEvento { get; set; }
-       
-        public string Imagen { get; set; }
+        public string LstImagenes { get; set; }
+        //public List <ClsModImagen> LstImagenes {get; set;}
     }
 }

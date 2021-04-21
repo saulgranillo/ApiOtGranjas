@@ -179,7 +179,7 @@ namespace WebApplication2.Controllers
 
         [HttpPost("Guardar")]
         [AllowAnonymous]
-        public IActionResult GuardarOT(ClsModCatOT objModel)
+        public IActionResult GuardarOT([FromBody]ClsModCatOT objModel)
         {
             ClsModResultado objClsModResultado = new ClsModResultado();
             ClsNegCatOT objCatNeg = new ClsNegCatOT();
@@ -196,6 +196,29 @@ namespace WebApplication2.Controllers
             }
             return Ok(objClsModResultado);
         }
+
+        //La use solo para hacer la peticion de la imagen
+        //[HttpPost("imagen")]
+        //public IActionResult Imagen([FromBody] string base64Data)
+        //{
+        //    try
+        //    {
+        //        if (base64Data != "" && base64Data != null)
+        //        {
+        //            return Ok();
+        //        }
+        //        else
+        //        {
+        //            return Ok(null);
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+
+        //        return StatusCode((int)System.Net.HttpStatusCode.InternalServerError, $"Internal server error, {ex.Message}");
+        //    }
+
+        //}
 
         [HttpGet("CargarCSV")]
         [AllowAnonymous]

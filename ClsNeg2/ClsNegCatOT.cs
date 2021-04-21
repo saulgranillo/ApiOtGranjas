@@ -4,6 +4,7 @@ using System.Data.SqlClient;
 
 using ClbModOT;
 using ClsDatOT;
+
 using UtilidadesNorson.Conexiones;
 
 namespace ClbNegOT
@@ -148,7 +149,11 @@ namespace ClbNegOT
         public ClsModResultado GuardarOT (ClsModCatOT objModel)
         {
             ClsModResultado objClsModResultado = null;
+
+            ClsModImagen objModImagen = new ClsModImagen();
             CLsDatOT objClsDatOT = new CLsDatOT();
+            //ClsDatCatImagenes objDatImagen = new ClsDatCatImagenes();
+            List<ClsModImagen> lstModImagen = null;
             try
             {
                 if (objModel.IdOT > 0)
@@ -157,8 +162,19 @@ namespace ClbNegOT
                 }
                 else
                 {
-                    //Agregar
+
                     objClsModResultado = objClsDatOT.GuardarOT(objModel);
+
+                    //foreach (var imagen in objModel.LstImagenes)
+                    //{
+                    //    objModImagen.LstModImagenes.Add(imagen);
+                    //}
+
+                    
+                    if (objClsModResultado.Id >0)
+                    {
+                       lstModImagen = new ClsDatCatImagenes().Guardar(objClsModResultado.Id, objModel.LstImagenes, out objClsModResultado);
+                    }
                 }
 
             }

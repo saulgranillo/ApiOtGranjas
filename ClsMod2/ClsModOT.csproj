@@ -47,6 +47,7 @@
     <Compile Include="ClsModEstatus.cs" />
     <Compile Include="ClsModEvento.cs" />
     <Compile Include="ClsModGranja.cs" />
+    <Compile Include="ClsModImagen.cs" />
     <Compile Include="ClsModOT.cs" />
     <Compile Include="ClsModPrioridad.cs" />
     <Compile Include="ClsModResultado.cs" />

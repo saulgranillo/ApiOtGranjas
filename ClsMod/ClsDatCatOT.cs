@@ -414,7 +414,7 @@ namespace ClsDatOT
                        
             try
             {
-                          
+                
                 conSql.Command = conSql.Connection.CreateCommand();
                 conSql.Command.CommandType = CommandType.StoredProcedure;
                 conSql.Command.Parameters.Add(new SqlParameter("@Prioridad", SqlDbType.VarChar) { Value = objModel.Prioridad });
@@ -441,9 +441,17 @@ namespace ClsDatOT
                 conSql.Command.Parameters.Add(new SqlParameter("@TipoEventoDesc", SqlDbType.VarChar) { Value = objModel.TipoEvento });
                 conSql.Command.Parameters.Add(new SqlParameter("@TipoEvento", SqlDbType.VarChar) { Value = objModel.CodEvento });
 
-
                 conSql.Command.CommandText = "[OrdenesTrabajo].[dbo].[SpdAgregarOT]";
-                conSql.DataReader = conSql.Command.ExecuteReader();
+        
+                object Id = conSql.Command.ExecuteScalar();
+                if(Id != null)
+                {
+                    int ident = 0;
+                    if(int.TryParse(Id.ToString(),out ident))
+                    {
+                        objReturn.Id = ident;
+                    }
+                }
 
             }
             catch (Exception ex)
