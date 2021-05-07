@@ -581,6 +581,122 @@ namespace ClsDatOT
             return LstModCatOTCSV;
         }
 
+        public List<ClsModCatOT> CargarPorFechas(ClsModRptXFecha objFecha , out ClsModResultado objClsModResultado)
+        {
+            objClsModResultado = new ClsModResultado();
+            List<ClsModCatOT> LstModCatOTCSV = new List<ClsModCatOT>();
+            SqlDataReader sqlRead = null;
+
+            SqlNorson16 conSql = new SqlNorson16();
+            conSql.CreateConn();
+            try
+            {
+                conSql.Command = conSql.Connection.CreateCommand();
+                conSql.Command.CommandType = CommandType.StoredProcedure;
+                conSql.Command.Parameters.Add(new SqlParameter("@FechaIni", SqlDbType.Date) { Value = objFecha.fechaInicio});
+                conSql.Command.Parameters.Add(new SqlParameter("@FechaFin", SqlDbType.Date) { Value = objFecha.fechaFin});
+                conSql.Command.CommandText = "[OrdenesTrabajo].[dbo].[SpdRptCatOTFechas]";
+                conSql.DataReader = conSql.Command.ExecuteReader();
+
+
+                string CodPrioridad = string.Empty;
+                string Folio = string.Empty;
+                string CodTipoOT = string.Empty;
+                string Granja = string.Empty;
+                string Area = string.Empty;
+                string Sala = string.Empty;
+                string Equipo = string.Empty;
+                string Actividad = string.Empty;
+                string Materiales = string.Empty;
+                //string Fecha = string.Empty;
+                string Estatus = string.Empty;
+                string CodEstatus = string.Empty;
+                string Tecnico1 = string.Empty;
+                string Tecnico2 = string.Empty;
+                string Tecnico3 = string.Empty;
+                string Tecnico4 = string.Empty;
+                string Tecnico5 = string.Empty;
+                string TipoEvento = string.Empty;
+                string CodEvento = string.Empty;
+
+                if (conSql.DataReader.HasRows)
+                {
+                    while (conSql.DataReader.Read())
+                    {
+                        //el orden del modelo, es el orden en el que se acomodan las columnas del reporte
+                   ClsModCatOT objModel = new ClsModCatOT();
+
+
+                        CodPrioridad = (string)(conSql.DataReader["CodPrioridad"] != DBNull.Value ? conSql.DataReader["CodPrioridad"] : string.Empty);
+                        Folio = (conSql.DataReader["Folio"] != DBNull.Value ? conSql.DataReader["Folio"].ToString() : string.Empty);
+                        CodTipoOT = (string)(conSql.DataReader["CodTipoOT"] != DBNull.Value ? conSql.DataReader["CodTipoOT"] : string.Empty);
+                        Granja = (string)(conSql.DataReader["Granja"] != DBNull.Value ? conSql.DataReader["Granja"] : string.Empty);
+                        Area = (string)(conSql.DataReader["Area"] != DBNull.Value ? conSql.DataReader["Area"] : string.Empty);
+                        Sala = (string)(conSql.DataReader["Sala"] != DBNull.Value ? conSql.DataReader["Sala"] : string.Empty);
+                        Equipo = (string)(conSql.DataReader["Equipo"] != DBNull.Value ? conSql.DataReader["Equipo"] : string.Empty);
+                        Actividad = (string)(conSql.DataReader["Actividad"] != DBNull.Value ? conSql.DataReader["Actividad"] : string.Empty);
+                        Materiales = (string)(conSql.DataReader["Materiales"] != DBNull.Value ? conSql.DataReader["Materiales"] : string.Empty);
+                        Estatus = (string)(conSql.DataReader["Estatus"] != DBNull.Value ? conSql.DataReader["Estatus"] : string.Empty);
+                        CodEstatus = (string)(conSql.DataReader["CodEstatus"] != DBNull.Value ? conSql.DataReader["CodEstatus"] : string.Empty);
+                        Tecnico1 = (string)(conSql.DataReader["Tecnico1"] != DBNull.Value ? conSql.DataReader["Tecnico1"] : string.Empty);
+                        Tecnico2 = (string)(conSql.DataReader["Tecnico2"] != DBNull.Value ? conSql.DataReader["Tecnico2"] : string.Empty);
+                        Tecnico3 = (string)(conSql.DataReader["Tecnico3"] != DBNull.Value ? conSql.DataReader["Tecnico3"] : string.Empty);
+                        Tecnico4 = (string)(conSql.DataReader["Tecnico4"] != DBNull.Value ? conSql.DataReader["Tecnico4"] : string.Empty);
+                        Tecnico5 = (string)(conSql.DataReader["Tecnico5"] != DBNull.Value ? conSql.DataReader["Tecnico5"] : string.Empty);
+                        TipoEvento = (string)(conSql.DataReader["Evento"] != DBNull.Value ? conSql.DataReader["Evento"] : string.Empty);
+                        CodEvento = (string)(conSql.DataReader["CodEvento"] != DBNull.Value ? conSql.DataReader["CodEvento"] : string.Empty);
+
+                        //int result = Int32.Parse(Id);
+                        //objModel.IdOT = result;
+
+                        //quitar caracteres - : de la fecha (folio)
+                        string folioTmp = Folio.Replace("-", "");
+                        string folioTmp2 = folioTmp.Replace(":", "");
+                        string folioTmp3 = folioTmp2.Replace(".", "");
+                        string folioTmp4 = folioTmp3.Replace(" ", "");
+
+
+                        objModel.CodPrioridad = CodPrioridad;
+                        objModel.Folio = folioTmp4;
+                        objModel.CodTipoOT = CodTipoOT;
+                        objModel.Granja = Granja;
+                        objModel.Area = Area;
+                        objModel.Sala = Sala;
+                        objModel.Equipo = Equipo;
+                        objModel.Actividad = Actividad;
+                        objModel.Materiales = Materiales;
+                        objModel.Fecha = Folio;
+                        objModel.Estatus = Estatus;
+                        objModel.CodEstatus = CodEstatus;
+                        objModel.Tecnico1 = Tecnico1;
+                        objModel.Tecnico2 = Tecnico2;
+                        objModel.Tecnico3 = Tecnico3;
+                        objModel.Tecnico4 = Tecnico4;
+                        objModel.Tecnico5 = Tecnico5;
+                        objModel.TipoEvento = TipoEvento;
+                        objModel.CodEvento = CodEvento;
+
+
+
+
+
+                        LstModCatOTCSV.Add(objModel);
+
+                    }
+                }
+
+            }
+            catch (Exception ex)
+            {
+                objClsModResultado.MsgError = Error + "Reporte por fechas()" + ex.Message;
+
+            }
+            finally
+            {
+                if (sqlRead != null) sqlRead.Close();
+            }
+            return LstModCatOTCSV;
+        }
 
 
 

@@ -206,6 +206,23 @@ namespace ClbNegOT
             return LstModCatOTCSV;
         }
 
+        public List<ClsModCatOT>CargarPorFechas(ClsModRptXFecha objFecha)
+        {
+            ClsModCatOT objModel = new ClsModCatOT();
+            ClsModResultado objClsModResultado = new ClsModResultado();
+            List<ClsModCatOT> LstModCatOTFechas = null;
+
+            try
+            {
+                LstModCatOTFechas = new ClsDatOT.CLsDatOT().CargarPorFechas(objFecha, out objClsModResultado);
+            }
+            catch (Exception ex)
+            {
+                objClsModResultado.MsgError = ex.Message;
+            }
+
+            return LstModCatOTFechas;
+        }
 
 
 

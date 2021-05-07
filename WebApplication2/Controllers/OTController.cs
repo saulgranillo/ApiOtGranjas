@@ -241,6 +241,27 @@ namespace WebApplication2.Controllers
             return Ok(LstModCatOTCSV);
         }
 
+        [HttpPost("CargarXFechas")]
+        [AllowAnonymous]
+        public IActionResult CargarXFechas(ClsModRptXFecha objFecha)
+        {
+            ClsModCatOT objModel = new ClsModCatOT();
+            ClsModResultado objClsModResultado = new ClsModResultado();
+            List<ClsModCatOT> LstModCatOTFechas = null;
+
+            ClsNegCatOT objCatNeg = new ClsNegCatOT();
+            try
+            {
+                LstModCatOTFechas = objCatNeg.CargarPorFechas(objFecha);
+            }
+
+            catch (Exception ex)
+            {
+                objClsModResultado.MsgError = ex.Message;
+            }
+            return Ok(LstModCatOTFechas);
+        }
+
 
 
 

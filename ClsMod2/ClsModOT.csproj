@@ -51,6 +51,7 @@
     <Compile Include="ClsModOT.cs" />
     <Compile Include="ClsModPrioridad.cs" />
     <Compile Include="ClsModResultado.cs" />
+    <Compile Include="ClsModRptXFecha.cs" />
     <Compile Include="ClsModTipo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
