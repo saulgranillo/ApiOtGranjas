@@ -203,8 +203,13 @@ namespace WebApplication2.Controllers
         //{
         //    try
         //    {
-        //        if (base64Data != "" && base64Data != null)
+        //        if (base64Data.Length >0 && base64Data != null)
         //        {
+        //            ClsModResultado objClsModResultado = new ClsModResultado();
+        //            ClsNegCatOT objNegCat = new ClsNegCatOT();
+        //            objClsModResultado = objNegCat.GuardarImagen(base64Data);
+
+                   
         //            return Ok();
         //        }
         //        else
