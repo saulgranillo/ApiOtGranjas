@@ -14,7 +14,8 @@ namespace WebApplication2.Controllers
     [ApiController]
     public class OTController : ControllerBase
     {
-
+        //NO DEBO subir version hasta que pruebe local el iis
+        //este endpoint lo use para testear la api ya montada en el server
         [HttpPost("Cargar")]
         [AllowAnonymous]
         public IActionResult CargarEstatusLista(ClsModCatOT obj)
@@ -265,6 +266,27 @@ namespace WebApplication2.Controllers
                 objClsModResultado.MsgError = ex.Message;
             }
             return Ok(LstModCatOTFechas);
+        }
+
+        [HttpPost("CargarImgXId")]
+        [AllowAnonymous]
+        public IActionResult CargarImagenXId(ClsModImagen IdOrden)
+        {
+            ClsModImagen objModel = new ClsModImagen();
+            ClsModResultado objClsModResultado = new ClsModResultado();
+            
+
+            ClsNegCatOT objCatNeg = new ClsNegCatOT();
+            try
+            {
+                objModel = objCatNeg.CargarImagenXId(IdOrden.IdOT);
+            }
+
+            catch (Exception ex)
+            {
+                objClsModResultado.MsgError = ex.Message;
+            }
+            return Ok(objModel);
         }
 
 

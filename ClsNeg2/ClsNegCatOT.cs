@@ -1,11 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
+using System.IO;
 
 using ClbModOT;
 using ClsDatOT;
 
+
 using UtilidadesNorson.Conexiones;
+//using static System.Net.Mime.MediaTypeNames;
 
 namespace ClbNegOT
 {
@@ -236,6 +239,25 @@ namespace ClbNegOT
             }
 
             return LstModCatOTFechas;
+        }
+
+
+        public ClsModImagen CargarImagenXId(int IdOt)
+        {
+            ClsModImagen objReturn = new ClsModImagen();
+            ClsModResultado objClsModResultado = new ClsModResultado();
+
+            try
+            {
+                objReturn = new ClsDatCatImagenes().CargarImagenXId(IdOt);
+            }
+            catch (Exception ex)
+            {
+                objClsModResultado.MsgError = ex.Message;
+                
+            }
+
+            return objReturn;
         }
 
 
