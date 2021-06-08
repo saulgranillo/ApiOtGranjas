@@ -409,6 +409,12 @@ namespace ClsDatOT
         {
             ClsModResultado objReturn = new ClsModResultado();
 
+            DateTime fecha = DateTime.Now;
+            string folioTmp = "";
+            folioTmp = fecha.ToString("yyyyMMddHmmssf");
+            Console.WriteLine("folio formateado " + folioTmp + "rrrr" + fecha);
+
+
             SqlNorson16 conSql = new SqlNorson16();
             conSql.CreateConn();
                        
@@ -440,6 +446,8 @@ namespace ClsDatOT
                 conSql.Command.Parameters.Add(new SqlParameter("@Tecnico5", SqlDbType.VarChar) { Value = objModel.Tecnico5 });
                 conSql.Command.Parameters.Add(new SqlParameter("@TipoEventoDesc", SqlDbType.VarChar) { Value = objModel.TipoEvento });
                 conSql.Command.Parameters.Add(new SqlParameter("@TipoEvento", SqlDbType.VarChar) { Value = objModel.CodEvento });
+                conSql.Command.Parameters.Add(new SqlParameter("@Folio", SqlDbType.VarChar) { Value = folioTmp });
+                conSql.Command.Parameters.Add(new SqlParameter("@Fecha", SqlDbType.DateTime) { Value = fecha });
 
                 conSql.Command.CommandText = "[OrdenesTrabajo].[dbo].[SpdAgregarOT]";
         
@@ -587,14 +595,15 @@ namespace ClsDatOT
             List<ClsModCatOT> LstModCatOTCSV = new List<ClsModCatOT>();
             SqlDataReader sqlRead = null;
 
+
             SqlNorson16 conSql = new SqlNorson16();
             conSql.CreateConn();
             try
             {
                 conSql.Command = conSql.Connection.CreateCommand();
                 conSql.Command.CommandType = CommandType.StoredProcedure;
-                conSql.Command.Parameters.Add(new SqlParameter("@FechaIni", SqlDbType.Date) { Value = objFecha.fechaInicio});
-                conSql.Command.Parameters.Add(new SqlParameter("@FechaFin", SqlDbType.Date) { Value = objFecha.fechaFin});
+                conSql.Command.Parameters.Add(new SqlParameter("@FechaIni", SqlDbType.Date) { Value = objFecha.fechaInicio });
+                conSql.Command.Parameters.Add(new SqlParameter("@FechaFin", SqlDbType.Date) { Value = objFecha.fechaFin });
                 conSql.Command.CommandText = "[OrdenesTrabajo].[dbo].[SpdRptCatOTFechas]";
                 conSql.DataReader = conSql.Command.ExecuteReader();
 
@@ -624,7 +633,7 @@ namespace ClsDatOT
                     while (conSql.DataReader.Read())
                     {
                         //el orden del modelo, es el orden en el que se acomodan las columnas del reporte
-                   ClsModCatOT objModel = new ClsModCatOT();
+                        ClsModCatOT objModel = new ClsModCatOT();
 
 
                         CodPrioridad = (string)(conSql.DataReader["CodPrioridad"] != DBNull.Value ? conSql.DataReader["CodPrioridad"] : string.Empty);
@@ -695,6 +704,8 @@ namespace ClsDatOT
             {
                 if (sqlRead != null) sqlRead.Close();
             }
+            
+
             return LstModCatOTCSV;
         }
 

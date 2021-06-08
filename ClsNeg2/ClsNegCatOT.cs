@@ -176,7 +176,10 @@ namespace ClbNegOT
                     
                     if (objClsModResultado.Id >0)
                     {
-                       lstModImagen = new ClsDatCatImagenes().Guardar(objClsModResultado.Id, objModel.LstImagenes, out objClsModResultado);
+                        if (objModel.LstImagenes != null || objModel.LstImagenes != "")
+                        {
+                            lstModImagen = new ClsDatCatImagenes().Guardar(objClsModResultado.Id, objModel.LstImagenes, out objClsModResultado);
+                        }           
                     }
                 }
 
@@ -242,7 +245,7 @@ namespace ClbNegOT
         }
 
 
-        public ClsModImagen CargarImagenXId(int IdOt)
+        public ClsModImagen CargarImagenXId(string IdOt)
         {
             ClsModImagen objReturn = new ClsModImagen();
             ClsModResultado objClsModResultado = new ClsModResultado();

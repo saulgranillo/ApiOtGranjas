@@ -48,7 +48,7 @@ namespace ClsDatOT
             return LstImagenes;
         }
 
-        public ClsModImagen CargarImagenXId (int IdOT)
+        public ClsModImagen CargarImagenXId (string IdOT)
         {
             ClsModImagen objReturn = new ClsModImagen();
           //ClsModResultado  objClsModResultado = new ClsModResultado();
@@ -58,9 +58,10 @@ namespace ClsDatOT
 
             try
             {
+                //int x = Convert.ToInt32(IdOT);
                 conSql.Command = conSql.Connection.CreateCommand();
                 conSql.Command.CommandType = CommandType.StoredProcedure;
-                conSql.Command.Parameters.Add(new SqlParameter("@IdOT", SqlDbType.Int) { Value = IdOT});
+                conSql.Command.Parameters.Add(new SqlParameter("@Folio", SqlDbType.VarChar) { Value = IdOT});
                 conSql.Command.CommandText = "[OrdenesTrabajo].[dbo].[SpdRptCargarImagenXId]";
                 conSql.DataReader = conSql.Command.ExecuteReader();
 
@@ -84,7 +85,7 @@ namespace ClsDatOT
             {
                 if (conSql != null) conSql.CloseConn();
             }
-            return objReturn;
+             return objReturn;
         }
     }
 }

@@ -270,7 +270,7 @@ namespace WebApplication2.Controllers
 
         [HttpPost("CargarImgXId")]
         [AllowAnonymous]
-        public IActionResult CargarImagenXId(ClsModImagen IdOrden)
+        public IActionResult CargarImagenXId(ClsModImagen objModImagen)
         {
             ClsModImagen objModel = new ClsModImagen();
             ClsModResultado objClsModResultado = new ClsModResultado();
@@ -279,7 +279,7 @@ namespace WebApplication2.Controllers
             ClsNegCatOT objCatNeg = new ClsNegCatOT();
             try
             {
-                objModel = objCatNeg.CargarImagenXId(IdOrden.IdOT);
+                objModel = objCatNeg.CargarImagenXId(objModImagen.IdOT);
             }
 
             catch (Exception ex)
