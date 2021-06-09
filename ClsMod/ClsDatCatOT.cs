@@ -244,13 +244,13 @@ namespace ClsDatOT
             List<ClsModGranja> LstModCatGranja = new List<ClsModGranja>();
             SqlDataReader sqlRead = null;
 
-            SqlNorson02 conSql = new SqlNorson02();
+            SqlNorson16 conSql = new SqlNorson16();
             conSql.CreateConn();
             try
             {
                 conSql.Command = conSql.Connection.CreateCommand();
                 conSql.Command.CommandType = CommandType.StoredProcedure;
-                conSql.Command.CommandText = "[AppMovGranjas].[dbo].[SpdCargarGranjas]";
+                conSql.Command.CommandText = "[OrdenesTrabajo].[dbo].[SpdCargarGranjas]";
                 conSql.DataReader = conSql.Command.ExecuteReader();
 
                 string centro = string.Empty;
