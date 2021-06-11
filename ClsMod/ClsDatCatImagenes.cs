@@ -26,6 +26,8 @@ namespace ClsDatOT
             SqlNorson16 conSql = new SqlNorson16();
             conSql.CreateConn();
 
+            //base64Encode(objModel);
+
             try
             {
                 conSql.Command = conSql.Connection.CreateCommand();
@@ -58,6 +60,7 @@ namespace ClsDatOT
 
             try
             {
+                
                 //int x = Convert.ToInt32(IdOT);
                 conSql.Command = conSql.Connection.CreateCommand();
                 conSql.Command.CommandType = CommandType.StoredProcedure;
@@ -72,6 +75,7 @@ namespace ClsDatOT
                         //byte[] productImage;
                         //productImage = (byte[])conSql.DataReader["Imagen"];
                         objReturn.Imagen = (string)(conSql.DataReader["Imagen"] != DBNull.Value ? conSql.DataReader["Imagen"] : string.Empty);
+                        //Base64Decode(objReturn.Imagen);
                     }
                    
                 }
@@ -86,6 +90,18 @@ namespace ClsDatOT
                 if (conSql != null) conSql.CloseConn();
             }
              return objReturn;
+        }
+
+        public static string base64Encode (string objModel)
+        {
+            var plainTextBytes = System.Text.Encoding.UTF8.GetBytes(objModel);
+            return System.Convert.ToBase64String(plainTextBytes);
+        }
+
+        public static string Base64Decode(string base64EncodedData)
+        {
+            var base64EncodedBytes = System.Convert.FromBase64String(base64EncodedData);
+            return System.Text.Encoding.UTF8.GetString(base64EncodedBytes);
         }
     }
 }

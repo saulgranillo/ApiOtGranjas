@@ -182,6 +182,7 @@ namespace WebApplication2.Controllers
         [AllowAnonymous]
         public IActionResult GuardarOT([FromBody]ClsModCatOT objModel)
         {
+            Console.WriteLine(objModel);
             ClsModResultado objClsModResultado = new ClsModResultado();
             ClsNegCatOT objCatNeg = new ClsNegCatOT();
 
@@ -199,32 +200,32 @@ namespace WebApplication2.Controllers
         }
 
         //La use solo para hacer la peticion de la imagen
-        //[HttpPost("imagen")]
-        //public IActionResult Imagen([FromBody] string base64Data)
-        //{
-        //    try
-        //    {
-        //        if (base64Data.Length >0 && base64Data != null)
-        //        {
-        //            ClsModResultado objClsModResultado = new ClsModResultado();
-        //            ClsNegCatOT objNegCat = new ClsNegCatOT();
-        //            objClsModResultado = objNegCat.GuardarImagen(base64Data);
+        [HttpPost("imagen")]
+        public IActionResult Imagen([FromBody] string base64Data)
+        {
+            try
+            {
+                if (base64Data.Length > 0 && base64Data != null)
+                {
+                    ClsModResultado objClsModResultado = new ClsModResultado();
+                    ClsNegCatOT objNegCat = new ClsNegCatOT();
+                    objClsModResultado = objNegCat.GuardarImagen(base64Data);
 
-                   
-        //            return Ok();
-        //        }
-        //        else
-        //        {
-        //            return Ok(null);
-        //        }
-        //    }
-        //    catch (Exception ex)
-        //    {
 
-        //        return StatusCode((int)System.Net.HttpStatusCode.InternalServerError, $"Internal server error, {ex.Message}");
-        //    }
+                    return Ok();
+                }
+                else
+                {
+                    return Ok(null);
+                }
+            }
+            catch (Exception ex)
+            {
 
-        //}
+                return StatusCode((int)System.Net.HttpStatusCode.InternalServerError, $"Internal server error, {ex.Message}");
+            }
+
+        }
 
         [HttpGet("CargarCSV")]
         [AllowAnonymous]

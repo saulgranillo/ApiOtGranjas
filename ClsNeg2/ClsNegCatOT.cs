@@ -193,18 +193,18 @@ namespace ClbNegOT
         }
 
         //para probar solo el guardado de la imagen cuando cambie el tipo en sql
-        //public ClsModResultado GuardarImagen( string base64)
-        //{
-        //    ClsModResultado objClsModResultado = null;
-        //    if (base64.Length >0)
-        //    {
-        //        List<ClsModImagen> lstModImagen = null;
+        public ClsModResultado GuardarImagen(string base64)
+        {
+            ClsModResultado objClsModResultado = null;
+            if (base64.Length > 0)
+            {
+                List<ClsModImagen> lstModImagen = null;
 
-        //        lstModImagen = new ClsDatCatImagenes().Guardar(1, base64, out objClsModResultado);
-        //    }
+                lstModImagen = new ClsDatCatImagenes().Guardar(666, base64, out objClsModResultado);
+            }
 
-        //    return objClsModResultado;
-        //}
+            return objClsModResultado;
+        }
 
         //REPORTES
 
